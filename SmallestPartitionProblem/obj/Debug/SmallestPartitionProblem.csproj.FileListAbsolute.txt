@@ -1,0 +1,6 @@
+F:\Progr\Csh\SmallestPartitionProblem\SmallestPartitionProblem\bin\Debug\SmallestPartitionProblem.exe.config
+F:\Progr\Csh\SmallestPartitionProblem\SmallestPartitionProblem\bin\Debug\SmallestPartitionProblem.exe
+F:\Progr\Csh\SmallestPartitionProblem\SmallestPartitionProblem\bin\Debug\SmallestPartitionProblem.pdb
+F:\Progr\Csh\SmallestPartitionProblem\SmallestPartitionProblem\obj\Debug\SmallestPartitionProblem.csprojResolveAssemblyReference.cache
+F:\Progr\Csh\SmallestPartitionProblem\SmallestPartitionProblem\obj\Debug\SmallestPartitionProblem.exe
+F:\Progr\Csh\SmallestPartitionProblem\SmallestPartitionProblem\obj\Debug\SmallestPartitionProblem.pdb
