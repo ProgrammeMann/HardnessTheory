@@ -18,9 +18,9 @@ namespace SmallestPartitionProblem
             {
                 new int[] {1,0,0,1,0},
                 new int[] {0,1,0,0,1},
-                new int[] {0,0,1,0,0},
-                new int[] {0,0,1,0,0},
-                new int[] {0,1,1,0,0}
+                new int[] {0,1,1,0,1},
+                new int[] {0,1,1,1,1},
+                new int[] {1,1,1,0,1}
             };
 
             int[][] arr2 = new int[][]
@@ -34,7 +34,7 @@ namespace SmallestPartitionProblem
             MatrixPrinter.Print(arr);
             Console.WriteLine();
 
-            Simplifyer s = new Simplifyer(arr);
+            Simplifyer s = new Simplifyer(arr); //Если нет решений, выкинет ошибку
             MatrixPrinter.Print(s.Matrix);
 
             Table table = new Table(s.Matrix);

@@ -43,6 +43,10 @@ namespace SmallestPartitionProblem.Actions
             {
                 BestAnswer.AddRange(MustBeInEveryAnswer);
             }
+            else
+            {
+                throw new NoAnswerException("Не канает");
+            }
         }
 
 
@@ -78,6 +82,15 @@ namespace SmallestPartitionProblem.Actions
                     if ((newP = FindP()) > -1)
                     {
                         FindAnswer(newP, 0);
+                    }
+                    else
+                    {
+                        if (Table.Blocks[p].Columns.Count > currentColumnInBlock + 1)
+                        {
+                            CurrentAnswer.RemoveAt(CurrentAnswer.Count - 1);
+                            CleanCoveredRows(Table.Blocks[p].Columns[goodColumnIndex]);
+                            FindAnswer(p, currentColumnInBlock + 1);
+                        }
                     }
                 }
             }else
