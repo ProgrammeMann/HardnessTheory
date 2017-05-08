@@ -9,6 +9,8 @@ namespace SmallestPartitionProblem.Actions
 {
     class Solver
     {
+        public List<int[]> MustBeInEveryAnswer { get; set; }
+
         public List<int[]> BestAnswer { get; set; }
 
         List<int[]> CurrentAnswer = new List<int[]>();
@@ -16,15 +18,19 @@ namespace SmallestPartitionProblem.Actions
         bool[] CoveredRows { get; set;}
         public Table Table { get; set; }
 
-        public Solver(Table t)
+        public Solver(Table t, bool[] coveredRows, List<int[]> mustBeInEveryAnswer)
         {
+
+            MustBeInEveryAnswer = mustBeInEveryAnswer;
             Table = t;
             CoveredRows = new bool[t.Blocks.Count()];
             for(int i = 0; i < CoveredRows.Length; i++)
             {
-                CoveredRows[i] = false;
+                CoveredRows[i] = coveredRows[i];
             }
         }
+
+        
 
         public void Solve() {
             
@@ -32,6 +38,10 @@ namespace SmallestPartitionProblem.Actions
             if(p > -1 && !CoveredRows[p] && Table.Blocks[p] != null && Table.Blocks.Count() != 0)
             {
                 FindAnswer(p, 0);
+            }
+            if(BestAnswer != null)
+            {
+                BestAnswer.AddRange(MustBeInEveryAnswer);
             }
         }
 

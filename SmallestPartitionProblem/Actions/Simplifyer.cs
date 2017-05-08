@@ -13,7 +13,7 @@ namespace SmallestPartitionProblem.Actions
 
         public int[][] Matrix { get; set; }
         public List<int[]> MustBeInEveryAnswer { get; set; } = new List<int[]>();
-        bool[] CoveredRows { get; set; }
+        public bool[] CoveredRows { get; set; }
 
         public Simplifyer(int[][] matrix)
         {
@@ -30,6 +30,12 @@ namespace SmallestPartitionProblem.Actions
         private void Simplify() {
             DoStepOne();
             DoStepTwo();
+            DoStepFour();
+        }
+
+        private void DoStepFour()
+        {
+            
         }
 
         private void DoStepOne() {
@@ -78,8 +84,8 @@ namespace SmallestPartitionProblem.Actions
                 }
                 MustBeInEveryAnswer.Add(currentColumn);
             }
-            DoStepThree(coveredRowsInLines);
             CleanMatrix(indexes);
+          //  DoStepThree(coveredRowsInLines);
         }
 
         private void CleanMatrix(List<int> indexes)
@@ -126,14 +132,12 @@ namespace SmallestPartitionProblem.Actions
             }
 
             List<int[]> newMatrix = new List<int[]>(Matrix);
-            foreach(var line in linesForDelete)
+            var lines = linesForDelete.OrderBy(l => -l).ToList();
+            foreach (var line in lines)
             {
                 newMatrix.RemoveAt(line);
             }
-            for(int i = 0; i < Matrix.Length; i++)
-            {
-                Matrix = newMatrix.ToArray();
-            }
+            Matrix = newMatrix.ToArray();
         }
     }
 

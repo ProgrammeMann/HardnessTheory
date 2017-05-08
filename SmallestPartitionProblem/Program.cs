@@ -34,12 +34,12 @@ namespace SmallestPartitionProblem
             MatrixPrinter.Print(arr);
             Console.WriteLine();
 
-            Table table = new Table(arr);
-
-            Simplifyer s = new Simplifyer(arr2);
+            Simplifyer s = new Simplifyer(arr);
             MatrixPrinter.Print(s.Matrix);
 
-            Solver solver = new Solver(table);
+            Table table = new Table(s.Matrix);
+
+            Solver solver = new Solver(table, s.CoveredRows, s.MustBeInEveryAnswer);
             solver.Solve();
             MatrixPrinter.PrintList(solver.BestAnswer);
             Console.Read();
