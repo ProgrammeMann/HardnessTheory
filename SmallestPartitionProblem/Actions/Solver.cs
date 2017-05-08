@@ -37,34 +37,44 @@ namespace SmallestPartitionProblem.Actions
 
 
         private void FindAnswer(int p, int currentColumnInBlock) {
-                //for (int i = 0; i < Table.Blocks[p].Columns.Count; i++) {   
-                //    if (!HasColumnCoveredRows(p, i))
-                //    {
-                //        for (int elemntIndex = 0; elemntIndex < Table.Blocks[p].Columns[i].Length; elemntIndex++)
-                //        {
-                //            if(Table.Blocks[p].Columns[i][elemntIndex] == 1)
-                //            {
-                //                CoveredRows[elemntIndex] = true;
-                //            }
-                //        }
-                //        CurrentAnswer.Add(Table.Blocks[p].Columns[i]);
-                //    }
-                //}
             int goodColumnIndex = FindGoodColumnInBlock(p, currentColumnInBlock); //Если вернется -1 то шаг 4
-            bool isSolved = true;
-            foreach (var r in CoveredRows)
+            if (goodColumnIndex != -1)
             {
-                if (!r)
+                bool isSolved = true;
+                foreach (var r in CoveredRows)
                 {
-                    isSolved = false;
-                    break;
+                    if (!r)
+                    {
+                        isSolved = false;
+                        break;
+                    }
                 }
-            }
-            if (isSolved)
-            {
-                if (BestAnswer == null || BestAnswer.Count > CurrentAnswer.Count)
+                if (isSolved)
                 {
-                    BestAnswer = CurrentAnswer;
+                    if (BestAnswer == null || BestAnswer.Count > CurrentAnswer.Count)
+                    {
+                        RewriteBestAnswer(CurrentAnswer);
+                    }
+                    if (Table.Blocks[p].Columns.Count > currentColumnInBlock + 1)
+                    {
+                        CurrentAnswer.RemoveAt(CurrentAnswer.Count - 1);
+                        CleanCoveredRows(Table.Blocks[p].Columns[goodColumnIndex]);
+                        FindAnswer(p, currentColumnInBlock + 1);
+                    }
+                }
+                else
+                {
+                    int newP;
+                    if ((newP = FindP()) > -1)
+                    {
+                        FindAnswer(newP, 0);
+                    }
+                }
+            }else
+            {
+                if(CurrentAnswer.Count == 0)
+                {
+                    return;
                 }
                 if (Table.Blocks[p].Columns.Count > currentColumnInBlock + 1)
                 {
@@ -73,9 +83,24 @@ namespace SmallestPartitionProblem.Actions
                     FindAnswer(p, currentColumnInBlock + 1);
                 }
             }
-            else
+        }
+
+        private void RewriteBestAnswer(List<int[]> currentAnswer)
+        {
+            if(BestAnswer == null)
             {
-                FindAnswer(FindP(), 0);
+                BestAnswer = new List<int[]>();
+                for(int i = 0; i < currentAnswer.Count; i++)
+                {
+                    BestAnswer.Add(new int[currentAnswer[0].Length]);
+                }
+            }
+            for(int i = 0; i < BestAnswer.Count; i++)
+            {
+                for(int j = 0; j < BestAnswer[0].Length; j++)
+                {
+                    BestAnswer[i][j] = currentAnswer[i][j];
+                }
             }
         }
 

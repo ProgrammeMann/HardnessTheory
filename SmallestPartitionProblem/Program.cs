@@ -17,17 +17,17 @@ namespace SmallestPartitionProblem
             int[][] arr = new int[][]
             {
                 new int[] {1,0,0,1,0},
-                new int[] {0,1,1,0,1},
-                new int[] {0,1,1,0,1},
-                new int[] {1,0,1,0,0},
-                new int[] {0,0,1,0,0}
+                new int[] {0,1,0,0,1},
+                new int[] {0,0,1,0,0},
+                new int[] {0,0,1,0,0},
+                new int[] {0,1,1,0,0}
             };
 
             int[][] arr2 = new int[][]
             {
-                new int[] {1,0,1,0 },
+                new int[] {1,0,1,1},
+                new int[] {1,0,1,0},
                 new int[] {0,1,0,0},
-                new int[] {0,1,0,1},
             };
             //Транспонирование матрицы и получение единичной главной диагонали
             arr = MatrixTransposer.Transpose(arr);
@@ -35,6 +35,9 @@ namespace SmallestPartitionProblem
             Console.WriteLine();
 
             Table table = new Table(arr);
+
+            Simplifyer s = new Simplifyer(arr2);
+            MatrixPrinter.Print(s.Matrix);
 
             Solver solver = new Solver(table);
             solver.Solve();

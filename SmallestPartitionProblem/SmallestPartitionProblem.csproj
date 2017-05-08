@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\Simplifyer.cs" />
     <Compile Include="Actions\Solver.cs" />
     <Compile Include="Classes\Block.cs" />
     <Compile Include="Classes\Table.cs" />

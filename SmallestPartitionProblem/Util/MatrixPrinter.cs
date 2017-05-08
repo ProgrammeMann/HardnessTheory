@@ -19,7 +19,7 @@ namespace SmallestPartitionProblem.Util
                 }
                 Console.WriteLine();
             }
-
+            Console.WriteLine();
         }
 
         public static void PrintList(List<int[]> list)
@@ -32,6 +32,7 @@ namespace SmallestPartitionProblem.Util
                 }
                 Console.WriteLine();
             }
+            Console.WriteLine();
         }
     }
 }
